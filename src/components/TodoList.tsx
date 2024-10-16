@@ -7,7 +7,9 @@ import { useState } from "react";
 const TodoList = () => {
   const [newTask, setNewTask] = useState("");
   const storage: string | null = localStorage.getItem("todoList");
-  const todos: Todo[] | null = storage ? JSON.parse(storage) : [];
+  const [todos, setTodos] = useState<Todo[] | null>(
+    storage ? JSON.parse(storage) : []
+  );
 
   const setIsDone = (todo: Todo) => {
     const todoList: Todo[] = todos ? [...todos] : [];
@@ -18,11 +20,13 @@ const TodoList = () => {
     };
     filteredArray.push(newTodo);
     localStorage.setItem("todoList", JSON.stringify(filteredArray));
+    setTodos(filteredArray);
   };
   const removeFromList = (todo: Todo) => {
     const todoList: Todo[] = todos ? [...todos] : [];
     const filteredArray = todoList.filter((f) => f === todo);
     localStorage.setItem("todoList", JSON.stringify(filteredArray));
+    setTodos(filteredArray);
   };
   const TodoContainer = (todo: Todo) => {
     return (
@@ -49,6 +53,7 @@ const TodoList = () => {
     todoList.push(newTodo);
     localStorage.setItem("todoList", JSON.stringify(todoList));
     setNewTask("");
+    setTodos(todoList);
   };
   return (
     <div className="todoListWrapper">
