@@ -5,12 +5,12 @@ import react from "@vitejs/plugin-react";
 export default defineConfig(({ command }) => {
   const config = {
     plugins: [react()],
-    base: "/",
+    base: `${command === "serve" ? "/" : "/todo-react/"}`,
   };
 
-  if (command !== "serve") {
-    config.base = "/todo-react/";
-  }
+  // if (command !== "serve") {
+  //   config.base = "/todo-react/";
+  // }
 
   return config;
 });
