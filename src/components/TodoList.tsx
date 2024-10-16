@@ -29,7 +29,7 @@ const TodoList = () => {
       <div className={`todoContainer ${todo.isDone ? "isDone" : ""}`}>
         <div>
           <input
-            checked={todo.isDone ? true : false}
+            // checked={todo.isDone ? true : false}
             onClick={() => setIsDone(todo)}
             type="checkbox"
           />
